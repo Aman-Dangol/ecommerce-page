@@ -8,27 +8,33 @@ const handler = async (
     const { slug } = await params;
     const { search } = new URL(req.url);
 
-    return fetch(`${BASE_URL}/${slug.join("/")}${search}`, {
-      body: req.body,
+    const hasBody = !["GET", "HEAD"].includes(req.method);
+
+    const upstream = await fetch(`${BASE_URL}/${slug.join("/")}${search}`, {
       method: req.method,
       headers: req.headers,
+      body: hasBody ? await req.arrayBuffer() : undefined,
       cache: "no-store",
+    });
+
+    const resHeaders = new Headers(upstream.headers);
+    resHeaders.delete("content-encoding");
+
+    return new Response(upstream.body, {
+      status: upstream.status,
+      statusText: upstream.statusText,
+      headers: resHeaders,
     });
   } catch (e) {
     console.error(e);
+    return Response.json({ error: "Upstream request failed" }, { status: 502 });
   }
 };
 
-export async function GET(
-  req: Request,
-  params: { params: Promise<{ slug: string[] }> },
-) {
-  return handler(req, params);
-}
-
-export async function POST(
-  req: Request,
-  params: { params: Promise<{ slug: string[] }> },
-) {
-  return handler(req, params);
-}
+export {
+  handler as GET,
+  handler as POST,
+  handler as PUT,
+  handler as PATCH,
+  handler as DELETE,
+};
