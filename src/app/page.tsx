@@ -10,7 +10,6 @@ export default function Home() {
           const data = await fetch("/dummyJson/test");
           if (data.ok) {
             const result = await data.json();
-            console.log(result, "asdasdad");
           }
         }}>
         Click
