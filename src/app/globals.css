@@ -1,14 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #e9e8e8;
+  --bg: #f4f4f4;
+  --accent-color: #ff4141;
+  --bg-secondary: #dcd9d9;
+  --text-disabled: #99a1af;
 }
 
-.dark {
-  --bg: #100d0d;
-}
 @theme inline {
   --color-bg: var(--bg);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-accent-color: var(--accent-color);
+  --color-text-disabled: var(--text-disabled);
 }
 
 @custom-variant dark (&:where(.dark, .dark *));

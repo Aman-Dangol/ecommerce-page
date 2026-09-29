@@ -1,5 +1,7 @@
-import { Box, Heading } from "@chakra-ui/react";
-import { ColorModeButton } from "../color-mode";
+"use client";
+
+import { Box, Heading, Icon, IconButton } from "@chakra-ui/react";
+import { FaShoppingCart } from "react-icons/fa";
 
 export const TopNavBar = () => {
   return (
@@ -9,7 +11,16 @@ export const TopNavBar = () => {
         size={"xl"}>
         E-commerce
       </Heading>
-      <ColorModeButton />
+
+      <IconButton
+        variant={"outline"}
+        onClick={() => {
+          alert("icon");
+        }}>
+        <Icon size={"md"}>
+          <FaShoppingCart />
+        </Icon>
+      </IconButton>
     </Box>
   );
 };

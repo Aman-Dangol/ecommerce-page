@@ -1,35 +1,29 @@
 "use client";
 
 import { getAllProducts } from "@/app/utils/api-routes/product-routes/product.routes";
+import { ProductTable } from "@/components/Product-table/product-table";
 import { Box } from "@chakra-ui/react";
-import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 export default function Dashboard() {
-  const [products, setProdcuts] = useState({ products: [] });
-  const searchParams = useSearchParams();
+  const { data: products } = useQuery({
+    queryKey: ["all-products"],
+    queryFn: async () => {
+      const data = await getAllProducts();
 
-  const limit = searchParams.get("limit") || "";
+      if (data) {
+        return data;
+      }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getAllProducts({
-        limit,
-      });
-
-      setProdcuts(data);
-    };
-
-    fetchData();
-  }, [limit, setProdcuts]);
+      return [];
+    },
+  });
 
   return (
-    <Box background={"primary"}>
-      <pre className='break-after-all whitespace-pre-wrap'>
-        {products.products.length}
-
-        {JSON.stringify(products, null, 2)}
-      </pre>
+    <Box
+      background={"primary"}
+      className='p-4'>
+      {products?.length && <ProductTable productsList={products} />}
     </Box>
   );
 }

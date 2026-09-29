@@ -1,16 +1,15 @@
 "use client";
 
 import { ChakraProvider } from "@chakra-ui/react";
-import {
-  ColorModeProvider,
-  system,
-  type ColorModeProviderProps,
-} from "./color-mode";
+import { system } from "./color-mode";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactNode } from "react";
 
-export function Provider(props: ColorModeProviderProps) {
+export function Provider({ children }: { children: ReactNode }) {
+  const client = new QueryClient();
   return (
-    <ChakraProvider value={system}>
-      <ColorModeProvider {...props} />
-    </ChakraProvider>
+    <QueryClientProvider client={client}>
+      <ChakraProvider value={system}>{children}</ChakraProvider>
+    </QueryClientProvider>
   );
 }
