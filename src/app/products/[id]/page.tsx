@@ -1,5 +1,5 @@
+import { ProductDetails } from "@/app/products/[id]/components/product-details";
 import { getProductByID } from "@/app/utils/api-routes/product-routes/product.routes";
-import { Box } from "@chakra-ui/react";
 
 export default async function Productpage({
   params,
@@ -9,9 +9,5 @@ export default async function Productpage({
   const { id } = await params;
 
   const product = await getProductByID(id);
-  return (
-    <Box>
-      <pre>{JSON.stringify(product, null, 2)}</pre>
-    </Box>
-  );
+  return <ProductDetails info={product} />;
 }

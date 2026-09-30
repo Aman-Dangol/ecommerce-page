@@ -57,7 +57,7 @@ export const getProductByID = async (id: string) => {
 
     const data = await response.json();
 
-    return data as Promise<string[]>;
+    return data as Promise<Product>;
   } catch (e) {
     console.error(e);
     throw new Error("Error fetching products");
