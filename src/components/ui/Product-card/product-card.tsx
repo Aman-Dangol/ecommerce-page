@@ -1,7 +1,7 @@
-import { AddToCardButton } from "@/components/ui/Product-card/components/buttons/add-to-card";
-import { CategoryTag } from "@/components/ui/Product-card/components/category-tag/category-tag";
-import { PriceTag } from "@/components/ui/Product-card/components/price-tag";
-import { Rating } from "@/components/ui/Product-card/components/rating";
+import { AddToCardButton } from "@/components/buttons/add-to-card";
+import { CategoryTag } from "@/components/category-tag/category-tag";
+import { PriceTag } from "@/components/price-tag/price-tag";
+import { Rating } from "@/components/rating/rating";
 import { Product } from "@/interfaces/product.type";
 import { Box, Heading, Image } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
