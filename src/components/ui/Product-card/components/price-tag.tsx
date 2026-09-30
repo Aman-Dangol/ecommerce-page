@@ -8,12 +8,9 @@ export const PriceTag = ({ price }: Props) => {
   return (
     <Text
       fontFamily={"accent"}
-      className='space-x-4 text-xl'>
-      <Text
-        className='inline font-bold'
-        color={"accent"}>
-        ${price}
-      </Text>
+      color={"accent"}
+      className='space-x-4 text-xl font-bold'>
+      ${price}
     </Text>
   );
 };

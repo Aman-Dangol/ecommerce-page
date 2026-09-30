@@ -1,3 +1,5 @@
+import { URL } from "node:url";
+
 const BASE_URL = "https://fakestoreapi.com";
 
 const handler = async (
@@ -6,10 +8,10 @@ const handler = async (
 ) => {
   try {
     const { slug } = await params;
-
+    const { search } = new URL(req.url);
     const hasBody = !["GET", "HEAD"].includes(req.method);
 
-    const upstream = await fetch(`${BASE_URL}/${slug.join("/")}`, {
+    const upstream = await fetch(`${BASE_URL}/${slug.join("/")}${search}`, {
       method: req.method,
       headers: req.headers,
       body: hasBody ? await req.arrayBuffer() : undefined,

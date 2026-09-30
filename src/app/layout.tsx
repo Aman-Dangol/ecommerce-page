@@ -5,7 +5,6 @@ import { Provider } from "@/components/ui/provider";
 import { EmotionRegistry } from "@/components/ui/emotion-registry";
 import { TopNavBar } from "@/components/ui/top-nav-bar/top-nav-bar";
 import { Separator } from "@chakra-ui/react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

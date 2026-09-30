@@ -6,6 +6,10 @@ const config = defineConfig({
   cssVarsPrefix: "ck",
   globalCss: {
     body: { background: "primary" },
+    ":root,:host": {
+      padding: 0,
+      margin: 0,
+    },
   },
 
   theme: {
@@ -16,6 +20,7 @@ const config = defineConfig({
         accent: { value: "var(--accent-color)" },
       },
       fonts: {
+        DEFAULt: { value: "monospace" },
         body: { value: "var(--font-geist-sans)" },
         accent: { value: "monospace" },
       },
