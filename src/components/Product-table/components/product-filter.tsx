@@ -3,7 +3,7 @@
 import { ProductSearchParams } from "@/app/utils/api-routes/product-routes/product.routes";
 import PriceRangePicker, {
   PriceRangeValue,
-} from "@/components/slide-range/slide-range";
+} from "@/components/slide-range/price-range-picker";
 
 import { SelectField } from "@/components/ui/Select/select";
 import {
