@@ -1,3 +1,5 @@
+"use client";
+
 import { AddToCardButton } from "@/components/buttons/add-to-card";
 import { CategoryTag } from "@/components/category-tag/category-tag";
 import { PriceTag } from "@/components/price-tag/price-tag";
@@ -43,7 +45,7 @@ export const ProductDetails = ({ info }: Props) => {
             <Rating {...info.rating} />
           </Flex>
 
-          <AddToCardButton />
+          <AddToCardButton info={info} />
         </Box>
 
         <Box>

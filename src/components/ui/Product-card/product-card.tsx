@@ -8,8 +8,9 @@ import { useRouter } from "next/navigation";
 
 interface Props {
   productDetails: Product;
+  hidebutton?: boolean;
 }
-export const ProductCard = ({ productDetails }: Props) => {
+export const ProductCard = ({ productDetails, hidebutton = false }: Props) => {
   const router = useRouter();
 
   return (
@@ -37,7 +38,7 @@ export const ProductCard = ({ productDetails }: Props) => {
 
       <CategoryTag category={productDetails.category} />
       <PriceTag price={productDetails.price} />
-      <AddToCardButton />
+      {!hidebutton && <AddToCardButton info={productDetails} />}
     </Box>
   );
 };
