@@ -22,7 +22,7 @@ export default function LoginPage() {
     router.push("/products");
   }
   return (
-    <Box className='border-bg-secondary mx-auto mt-12 w-[70%] rounded-xl border'>
+    <Box className='border-bg-secondary sm:[w-[40%]] m-2! mt-12! rounded-xl border md:mx-auto! lg:w-[70%]'>
       <Heading textAlign={"center"}>Login</Heading>
       <Separator />
       <form
@@ -35,17 +35,7 @@ export default function LoginPage() {
             router.replace("/products");
           }
         }}>
-        <Fieldset.Root
-          className='p-4'
-          size='lg'
-          maxW='md'>
-          <Stack>
-            <Fieldset.Legend>Contact details</Fieldset.Legend>
-            <Fieldset.HelperText>
-              Please provide your contact details below.
-            </Fieldset.HelperText>
-          </Stack>
-
+        <Fieldset.Root className='p-4'>
           <Fieldset.Content>
             <Field.Root>
               <Field.Label>username</Field.Label>

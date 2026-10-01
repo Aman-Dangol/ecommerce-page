@@ -6,6 +6,9 @@
   --bg-secondary: #dcd9d9;
   --text-disabled: #99a1af;
 }
+* {
+  box-sizing: border-box;
+}
 
 @theme inline {
   --color-bg: var(--bg);
