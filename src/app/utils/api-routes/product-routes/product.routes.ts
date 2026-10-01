@@ -48,18 +48,19 @@ export const getProductCategories = async () => {
 
 export const getProductByID = async (id: string) => {
   try {
-    const response = await fetch(`https://fakestoreapi.com/products/${id} `, {
+    const response = await fetch(`https://fakestoreapi.com/products/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     });
 
-    const data = await response.json();
+    if (response.ok) {
+      const data = await response.json();
 
-    return data as Promise<Product>;
+      return data as Promise<Product>;
+    }
   } catch (e) {
     console.error(e);
-    throw new Error("Error fetching products");
   }
 };
