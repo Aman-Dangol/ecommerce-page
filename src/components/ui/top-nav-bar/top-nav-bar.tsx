@@ -1,11 +1,15 @@
 "use client";
 
-import { Box, Heading, Icon, IconButton, Link } from "@chakra-ui/react";
-import { FaShoppingCart } from "react-icons/fa";
+import { useAuthstore } from "@/utils/store/auth.store";
+import { Box, Heading, IconButton, Link } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
+import { FaShoppingCart, FaSignOutAlt } from "react-icons/fa";
 
 export const TopNavBar = () => {
+  const { isAuthenticated, removeData } = useAuthstore();
+  const router = useRouter();
   return (
-    <Box className='flex p-2!'>
+    <Box className='flex gap-1 p-2!'>
       <Link
         className='flex-1'
         href='/products'>
@@ -19,12 +23,22 @@ export const TopNavBar = () => {
       <IconButton
         variant={"outline"}
         onClick={() => {
-          alert("icon");
+          router.push("/my-cart");
         }}>
-        <Icon size={"md"}>
-          <FaShoppingCart />
-        </Icon>
+        <FaShoppingCart />
       </IconButton>
+
+      {isAuthenticated && (
+        <IconButton
+          color={"red.600"}
+          variant={"outline"}
+          onClick={() => {
+            removeData();
+            router.replace("/login");
+          }}>
+          <FaSignOutAlt />
+        </IconButton>
+      )}
     </Box>
   );
 };

@@ -1,4 +1,4 @@
-import { AddToCardButton } from "@/components/buttons/add-to-card";
+import { AddToCartButton } from "@/components/buttons/add-to-cart";
 import { CategoryTag } from "@/components/category-tag/category-tag";
 import { PriceTag } from "@/components/price-tag/price-tag";
 import { Rating } from "@/components/rating/rating";
@@ -38,7 +38,7 @@ export const ProductCard = ({ productDetails, hidebutton = false }: Props) => {
 
       <CategoryTag category={productDetails.category} />
       <PriceTag price={productDetails.price} />
-      {!hidebutton && <AddToCardButton info={productDetails} />}
+      {!hidebutton && <AddToCartButton info={productDetails} />}
     </Box>
   );
 };

@@ -1,6 +1,6 @@
 "use client";
+import { AddToCartButton } from "@/components/buttons/add-to-cart";
 
-import { AddToCardButton } from "@/components/buttons/add-to-card";
 import { CategoryTag } from "@/components/category-tag/category-tag";
 import { PriceTag } from "@/components/price-tag/price-tag";
 import { Rating } from "@/components/rating/rating";
@@ -45,7 +45,7 @@ export const ProductDetails = ({ info }: Props) => {
             <Rating {...info.rating} />
           </Flex>
 
-          <AddToCardButton info={info} />
+          <AddToCartButton info={info} />
         </Box>
 
         <Box>

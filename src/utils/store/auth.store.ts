@@ -4,16 +4,18 @@ import { persist } from "zustand/middleware";
 
 interface AuthStore {
   isAuthenticated: boolean;
+  hydrated: boolean;
   token?: string;
   setToken: (token: string) => void;
   removeData: () => void;
+  setHydrated: () => void;
 }
 
 export const useAuthstore = create<AuthStore>()(
   persist(
     (set) => ({
       isAuthenticated: false,
-      userInfo: undefined,
+      hydrated: false,
       setToken: (data) => {
         if (data)
           set(() => ({
@@ -22,12 +24,21 @@ export const useAuthstore = create<AuthStore>()(
           }));
       },
       removeData() {
-        set(() => ({ userInfo: undefined, isAuthenticated: false }));
+        set(() => ({ token: undefined, isAuthenticated: false }));
       },
+      setHydrated: () => set({ hydrated: true }),
     }),
 
     {
       name: "user",
+      partialize: (state) => ({
+        token: state.token,
+        isAuthenticated: state.isAuthenticated,
+      }),
+      onRehydrateStorage: () => (state, error) => {
+        if (error) console.error("Auth store rehydration failed:", error);
+        state?.setHydrated();
+      },
     },
   ),
 );

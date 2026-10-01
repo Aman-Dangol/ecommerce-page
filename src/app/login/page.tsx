@@ -12,9 +12,15 @@ import {
   Separator,
   Stack,
 } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
-  const { setToken } = useAuthstore();
+  const { setToken, token } = useAuthstore();
+
+  const router = useRouter();
+  if (typeof token === "string") {
+    router.push("/products");
+  }
   return (
     <Box className='border-bg-secondary mx-auto mt-12 w-[70%] rounded-xl border'>
       <Heading textAlign={"center"}>Login</Heading>
@@ -25,6 +31,8 @@ export default function LoginPage() {
 
           if ("token" in res) {
             setToken(res.token);
+
+            router.replace("/products");
           }
         }}>
         <Fieldset.Root

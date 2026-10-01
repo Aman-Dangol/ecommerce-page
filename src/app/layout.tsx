@@ -5,6 +5,7 @@ import { Provider } from "@/components/ui/provider";
 import { EmotionRegistry } from "@/components/ui/emotion-registry";
 import { TopNavBar } from "@/components/ui/top-nav-bar/top-nav-bar";
 import { Separator } from "@chakra-ui/react";
+import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,6 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className='flex min-h-full flex-col'>
         <EmotionRegistry>
           <Provider>
+            <Toaster />
             <TopNavBar />
             <Separator />
             {children}

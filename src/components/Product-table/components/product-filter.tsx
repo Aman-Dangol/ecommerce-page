@@ -62,7 +62,7 @@ export const ProductFilter = ({ categories }: Props) => {
   });
 
   return (
-    <Box className='bg-bg-secondary/20 flex w-full flex-col items-center gap-2 rounded-xl p-1 md:flex-row'>
+    <Box className='bg-bg-secondary/20 p-1l flex w-full flex-col items-center gap-2 rounded-xl p-1 lg:flex-row'>
       <Flex
         className='w-full'
         gap={"2"}>
@@ -78,7 +78,7 @@ export const ProductFilter = ({ categories }: Props) => {
           }}
         />{" "}
         <IconButton
-          className='flex items-center justify-center md:hidden!'
+          className='flex items-center justify-center lg:hidden!'
           size={"xs"}
           rounded={"full"}
           variant={"solid"}
@@ -96,22 +96,26 @@ export const ProductFilter = ({ categories }: Props) => {
           )}
         </IconButton>
       </Flex>
-      <PriceRangePicker
-        onChange={(range) => {
-          setPriceRange(range);
-        }}
-        value={PriceRange}
-      />
-      <SelectField
-        placeHolder='Select Category'
-        list={categoryList}
-        value={[selectedCategory]}
-        onValueChange={(e) => {
-          selectCategory(e.value[0]);
-        }}
-      />
+      <Flex
+        className='w-full flex-col gap-2 sm:flex-row'
+        padding={0}>
+        <PriceRangePicker
+          onChange={(range) => {
+            setPriceRange(range);
+          }}
+          value={PriceRange}
+        />
+        <SelectField
+          placeHolder='Select Category'
+          list={categoryList}
+          value={[selectedCategory]}
+          onValueChange={(e) => {
+            selectCategory(e.value[0]);
+          }}
+        />
+      </Flex>
       <IconButton
-        className='hidden! items-center justify-center md:flex!'
+        className='hidden! items-center justify-center lg:flex!'
         size={"xs"}
         rounded={"full"}
         variant={"solid"}

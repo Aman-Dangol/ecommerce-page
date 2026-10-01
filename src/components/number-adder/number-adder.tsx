@@ -1,9 +1,18 @@
 import { Box, IconButton, NumberInput } from "@chakra-ui/react";
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import { PiMinus, PiPlus } from "react-icons/pi";
 
-export const NumberAdder = () => {
-  const [amount, setAmount] = useState<string>("1");
+interface Props {
+  onChange?: (amount: string) => void;
+  value?: string;
+}
+
+export const NumberAdder = ({ onChange, value }: Props) => {
+  const [amount, setAmount] = useState<string>(value || "1");
+
+  useEffect(() => {
+    onChange?.(amount);
+  }, [amount, onChange]);
 
   const handleIncrease = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
